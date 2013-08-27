@@ -1,0 +1,24 @@
+{
+  "name": "bitcoder",
+  "version": "0.0.0",
+  "description": "bitwise binary coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jhs67/bitcoder.git"
+  },
+  "keywords": [
+    "binary",
+    "universal",
+    "code",
+    "bit"
+  ],
+  "author": "Jon Spencer <jon@jonspencer.ca>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jhs67/bitcoder/issues"
+  }
+}
