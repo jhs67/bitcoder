@@ -22,7 +22,7 @@ describe('BitStream', function() {
 			assert(bs.readBits(written[i].bits) == written[i].value);
 		}
 	})
-	it("unary coding works", function() {
+	it("unary codes", function() {
 		bs.index = 0;
 		var written = [];
 		for (var i = 0; i < 50; ++i) {
@@ -36,7 +36,7 @@ describe('BitStream', function() {
 			assert.equal(bs.readUnary(), written[i]);
 		}
 	})
-	it("elias-gamma coding works", function() {
+	it("elias-gamma codes", function() {
 		bs.index = 0;
 		var written = [];
 		for (var i = 0; i < 200; ++i) {
@@ -50,7 +50,7 @@ describe('BitStream', function() {
 			assert.equal(bs.readEliasGamma(), written[i]);
 		}
 	})
-	it("elias-delta coding works", function() {
+	it("elias-delta codes", function() {
 		bs.index = 0;
 		var written = [];
 		for (var i = 0; i < 200; ++i) {
@@ -62,6 +62,35 @@ describe('BitStream', function() {
 		bs.index = 0;
 		for (var i = 0; i < written.length; ++i) {
 			assert.equal(bs.readEliasDelta(), written[i]);
+		}
+	})
+	it("elias-omega codes", function() {
+		bs.index = 0;
+		var written = [];
+		for (var i = 0; i < 200; ++i) {
+			var bits = Math.random() * 30 | 0;
+			var value = Math.random() * (1 << bits) + 1 | 0;
+			bs.writeEliasOmega(value);
+			written.push(value);
+		}
+		bs.index = 0;
+		for (var i = 0; i < written.length; ++i) {
+			assert.equal(bs.readEliasOmega(), written[i]);
+		}
+	})
+	it("truncated binary codes", function() {
+		bs.index = 0;
+		var written = [];
+		for (var i = 0; i < 200; ++i) {
+			var bits = Math.random() * 30 | 0;
+			var range = Math.random() * (1 << bits) + 1 | 0;
+			var value = Math.random() * range | 0;
+			bs.writeTruncateBinary(value, range);
+			written.push({ v: value, r: range });
+		}
+		bs.index = 0;
+		for (var i = 0; i < written.length; ++i) {
+			assert.equal(bs.readTruncatedBinary(written[i].r), written[i].v);
 		}
 	})
 });
