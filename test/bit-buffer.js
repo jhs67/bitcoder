@@ -24,4 +24,14 @@ describe('BitBuffer', function() {
 			o += written[i].bits;
 		}
 	})
+	it("fills bits", function() {
+		for (var i = 0; i < 200; ++i) {
+			var i = Math.random() * 1000 | 0;
+			var l = Math.random() * 1000 | 0;
+			var b = Math.random() > 0.5 | 0;
+			bb.fillBits(i, b, l);
+			for (var j = 0; j < l; ++j)
+				assert.equal(b, bb.getBits(i + j, 1));
+		}
+	})
 });

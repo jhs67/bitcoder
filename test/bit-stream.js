@@ -22,6 +22,17 @@ describe('BitStream', function() {
 			assert(bs.readBits(written[i].bits) == written[i].value);
 		}
 	})
+	it("fills bits", function() {
+		for (var i = 0; i < 200; ++i) {
+			bs.index = 0;
+			var l = Math.random() * 1000 | 0;
+			var b = Math.random() > 0.5 | 0;
+			bs.fillBits(b, l);
+			bs.index = 0;
+			for (var j = 0; j < l; ++j)
+				assert.equal(b, bs.readBits(1));
+		}
+	})
 	it("unary codes", function() {
 		bs.index = 0;
 		var written = [];
