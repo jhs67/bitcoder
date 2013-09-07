@@ -33,6 +33,19 @@ describe('BitStream', function() {
 				assert.equal(b, bs.readBits(1));
 		}
 	})
+	it("byte pads correctly", function() {
+		for (var i = 0; i < 200; ++i) {
+			bs.index = 0;
+			var l = Math.random() * 1000 | 0;
+			bs.fillBits(Math.random() > 0.5 | 0, l);
+			var n = Math.random() * 32 | 0;
+			var b = bs.wrap(n);
+			assert.equal(b.length % (n || 1), 0);
+			assert.equal(b.length * 8, bs.index);
+			var nbs = BitStream.unwrap(b);
+			assert.equal(l, nbs.view.length);
+		}
+	})
 	it("unary codes", function() {
 		bs.index = 0;
 		var written = [];
