@@ -102,6 +102,20 @@ describe('BitStream', function() {
 			assert.equal(bs.readEliasOmega(), written[i]);
 		}
 	})
+	it("fibonacci codes", function() {
+		bs.index = 0;
+		var written = [];
+		for (var i = 0; i < 2; ++i) {
+			var bits = Math.random() * 30 | 0;
+			var value = Math.random() * (1 << bits) + 1 | 0;
+			bs.writeFibonacci(value);
+			written.push(value);
+		}
+		bs.index = 0;
+		for (var i = 0; i < written.length; ++i) {
+			assert.equal(bs.readFibonacci(), written[i]);
+		}
+	})
 	it("truncated binary codes", function() {
 		bs.index = 0;
 		var written = [];
