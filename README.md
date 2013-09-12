@@ -33,7 +33,7 @@ assert.equal(rbs.readEliasGamma(), 2000);
 
 ### BitStream
 ### `new bitCoder.BitStream(len)`
-Construct a new BitStream backed by a new `BitBuffer` len bits.
+Construct a new BitStream backed by a new `BitBuffer` len bits long.
 
 ### `new bitCoder.BitStream(bitbuf)`
 Construct a new BitStream backed by an existing `BitBuffer`.
@@ -43,8 +43,8 @@ Construct a new BitStream backed by an new `BitBuffer`
 constructed from the existing buffer and optional length.
 
 ### `bitCoder.Bitstream.unwrap(buf)`
-Construct a new `BitStream` from of buffer previously obtained
-from calling `wrap`. This is a Function method, not a prototype method.
+Construct a new `BitStream` from of buffer previously obtained from
+calling `wrap`. This is a method on the Function object, not the prototype.
 
 ### `BitStream.index`
 The current read/write pointer; change this to seek.
@@ -71,10 +71,16 @@ Write out the given value (v >= 1) in unary encoding
 ### `BitStream.readUnary()`
 Read a unary encoded value from the stream
 
-### `BitStream.writeEliasGamma/writeEliasDelta/writeEliasOmega/writeFibonacci(v)`
+### `BitStream.writeEliasGamma(v)`
+### `BitStream.writeEliasDelta(v)`
+### `BitStream.writeEliasOmega(v)`
+### `BitStream.writeFibonacci(v)`
 Write out the given value (v >= 1) in the indicated universal code
 
-### `BitStream.readEliasGamma/readEliasDelta/readEliasOmega/readFibonacci()`
+### `BitStream.readEliasGamma()`
+### `BitStream.readEliasDelta()`
+### `BitStream.readEliasOmega()`
+### `BitStream.readFibonacci()`
 Read a value encoded with the indicated universal code
 
 ### `BitStream.writeTruncateBinary(v, n)`
