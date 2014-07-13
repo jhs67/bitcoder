@@ -1,0 +1,11 @@
+{
+	"name": "bit-coder",
+	"repository": "jhs67/bitcoder",
+	"description": "universal codes in javascript",
+	"version": "0.0.0",
+	"dependencies": {
+	},
+	"main": "index.js",
+	"scripts": [ "index.js", "lib/bit-buffer.js", "lib/bit-stream.js" ],
+	"license": "MIT"
+}
